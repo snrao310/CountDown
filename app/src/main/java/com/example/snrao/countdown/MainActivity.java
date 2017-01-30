@@ -17,7 +17,7 @@ import java.util.TimeZone;
 public class MainActivity extends AppCompatActivity {
 
     static final String DO_DATE = "07/24/2017 00:00:00";
-    static final String PREP_DATE = "01/29/2017 17:35:00";
+    static final String PREP_DATE = "07/01/2017 00:00:00";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         CountDownTimer DoTimer = new CountDownTimer(DoMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                doTimer.setText(getDiffAsString(millisUntilFinished));
+                doTimer.setText("CAN DO IN:\t\t\t\t\t"+getDiffAsString(millisUntilFinished));
             }
 
             @Override
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         CountDownTimer PrepTimer=new CountDownTimer(PrepMillis,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                prepTimer.setText(getDiffAsString(millisUntilFinished));
+                prepTimer.setText("CAN PREP IN:\t\t\t"+getDiffAsString(millisUntilFinished));
             }
 
             @Override
