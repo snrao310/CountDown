@@ -21,4 +21,12 @@
         android:text="Timer 2"
         android:id="@+id/PrepTimer"
         android:layout_below="@+id/DoTimer"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timer 3"
+        android:id="@+id/ElapsedTimer"
+        android:layout_below="@+id/PrepTimer"/>
 </RelativeLayout>
