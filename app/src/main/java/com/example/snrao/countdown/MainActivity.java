@@ -1,9 +1,16 @@
 package com.example.snrao.countdown;
 
+import android.animation.ObjectAnimator;
+import android.graphics.Color;
+import android.graphics.drawable.RotateDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.ArcShape;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -16,7 +23,7 @@ import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String START_DATE="07/22/2016 23:59:59";
+    static final String START_DATE="07/22/2016 00:00:00";
     static final String DO_DATE = "07/22/2017 00:00:00";
     static final String PREP_DATE = "07/01/2017 00:00:00";
 
@@ -24,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ArcView arcView = (ArcView) findViewById(R.id.arcView);
+        ArcAngleAnimation animation = new ArcAngleAnimation(arcView, 300);
+        animation.setDuration(5000);
+        arcView.startAnimation(animation);
         final TextView doTimer = (TextView) findViewById(R.id.DoTimer);
         final TextView prepTimer=(TextView) findViewById(R.id.PrepTimer);
         final TextView elapsedTimer=(TextView) findViewById(R.id.ElapsedTimer);
@@ -70,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         DoTimer.start();
         PrepTimer.start();
+
     }
 
     private String getDiffAsString(long diff) {
