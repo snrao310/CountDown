@@ -62,6 +62,7 @@ public class ArcView extends View {
         tPaint.setTextSize(110);
         canvas.drawText(text, xPos,yPos  , tPaint);
         tPaint.setTextSize(50);
+        String days=(Integer.parseInt(text)==1)?"Day":"Days";
         canvas.drawText("Days", diameter-120,diameter-100  , tPaint);
         int h=getHeight();
 
@@ -77,4 +78,10 @@ public class ArcView extends View {
     }
 
     public void setText(String text){this.text=text;requestLayout();}
+
+    public void finish(){
+        arcAngle=360;
+        text="00";
+        requestLayout();
+    }
 }

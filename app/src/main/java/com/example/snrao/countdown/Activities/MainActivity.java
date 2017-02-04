@@ -17,9 +17,9 @@ import java.util.SimpleTimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String START_DATE="07/22/2016 00:00:00";
-    static final String DO_DATE = "07/22/2017 00:00:00";
-    static final String PREP_DATE = "07/01/2017 18:45:00";
+    static final String START_DATE="02/24/2016 19:12:00";
+    static final String DO_DATE = "02/24/2017 19:12:00";
+    static final String PREP_DATE = "02/03/2017 19:12:00";
     static int DaysToPrep=0;
     static int DaysToDo=0;
     static int DaysFromStart=0;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView prepTimer;
     TextView elapsedTimer;
     ArcView arcView;
+
     CountDownView prepTimerBox;
 
     @Override
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         DaysToPrep=Integer.parseInt(left.split("\t:\t")[0]);
         arcView.setText(DaysToPrep+"");
 
-        int progress=300, duration=5000;
+        int progress=(int)((double)(TotalTime-PrepMillis)/(double)TotalTime*360), duration=5000;
         prepTimerBox.setup(progress,duration,DaysToPrep+"");
 
         setUpTimers();
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 prepTimer.setText("CAN PREP NOW!!");
+                prepTimerBox.finish();
             }
         };
 

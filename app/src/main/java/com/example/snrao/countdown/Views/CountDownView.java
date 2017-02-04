@@ -45,4 +45,11 @@ public class CountDownView extends LinearLayout{
         minutesText.setText(minutes);
         secondsText.setText(seconds);
     }
+
+    public void finish(){
+        arcView.finish();
+        hoursText.setText("00");
+        minutesText.setText("00");
+        secondsText.setText("00");
+    }
 }
