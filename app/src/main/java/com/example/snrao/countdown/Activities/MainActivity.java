@@ -1,43 +1,55 @@
-package com.example.snrao.countdown;
+package com.example.snrao.countdown.Activities;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Color;
-import android.graphics.drawable.RotateDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.ArcShape;
-import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
+import com.example.snrao.countdown.Views.ArcAngleAnimation;
+import com.example.snrao.countdown.Views.ArcView;
+import com.example.snrao.countdown.R;
+import com.example.snrao.countdown.Views.CountDownView;
+
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.SimpleTimeZone;
-import java.util.StringTokenizer;
-import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
     static final String START_DATE="07/22/2016 00:00:00";
     static final String DO_DATE = "07/22/2017 00:00:00";
-    static final String PREP_DATE = "07/01/2017 00:00:00";
+    static final String PREP_DATE = "07/01/2017 18:45:00";
+    static int DaysToPrep=0;
+    static int DaysToDo=0;
+    static int DaysFromStart=0;
+
+    long DoMillis;
+    long PrepMillis;
+    long TotalTime;
+
+    //@sameertodo: delete these once final one is done.
+    TextView doTimer;
+    TextView prepTimer;
+    TextView elapsedTimer;
+    ArcView arcView;
+    CountDownView prepTimerBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ArcView arcView = (ArcView) findViewById(R.id.arcView);
-        ArcAngleAnimation animation = new ArcAngleAnimation(arcView, 300);
-        animation.setDuration(5000);
-        arcView.startAnimation(animation);
-        final TextView doTimer = (TextView) findViewById(R.id.DoTimer);
-        final TextView prepTimer=(TextView) findViewById(R.id.PrepTimer);
-        final TextView elapsedTimer=(TextView) findViewById(R.id.ElapsedTimer);
+
+
+        doTimer = (TextView) findViewById(R.id.DoTimer);
+        prepTimer=(TextView) findViewById(R.id.PrepTimer);
+        elapsedTimer=(TextView) findViewById(R.id.ElapsedTimer);
+        arcView = (ArcView) findViewById(R.id.archView);
+        prepTimerBox=(CountDownView) findViewById(R.id.PrepTimerBox);
+
+
+        //Gets current date, dodate, prepdate and startdate, and finds time to dodate and prepdate. Also
+        // finds total time, which is an year
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
         simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
         Date today = null, start=null, DoDate = null, PrepDate = null;
@@ -50,14 +62,34 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception ex) {
             Log.e("DATE PARSE ISSUE: ", "Not valid date");
         }
-        long DoMillis = DoDate.getTime()-today.getTime();
-        long PrepMillis = PrepDate.getTime()-today.getTime();
-        final long TotalTime=DoDate.getTime()-start.getTime();
+        DoMillis = DoDate.getTime()-today.getTime();
+        PrepMillis = PrepDate.getTime()-today.getTime();
+        TotalTime=DoDate.getTime()-start.getTime();
+
+
+        //change this to settings view
+        ArcAngleAnimation animation = new ArcAngleAnimation(arcView, 300);
+        animation.setDuration(5000);
+        arcView.startAnimation(animation);
+        String left=getDiffAsString(PrepMillis);
+        DaysToPrep=Integer.parseInt(left.split("\t:\t")[0]);
+        arcView.setText(DaysToPrep+"");
+
+        int progress=300, duration=5000;
+        prepTimerBox.setup(progress,duration,DaysToPrep+"");
+
+        setUpTimers();
+
+    }
+
+    private void setUpTimers(){
+        //Do timer countdown
         CountDownTimer DoTimer = new CountDownTimer(DoMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 doTimer.setText("CAN DO IN:\t\t\t\t\t"+getDiffAsString(millisUntilFinished));
                 elapsedTimer.setText("ELAPSED:\t\t\t\t\t\t"+getDiffAsString(TotalTime-millisUntilFinished));
+
             }
 
             @Override
@@ -67,10 +99,21 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        //Prep timer countdown
         CountDownTimer PrepTimer=new CountDownTimer(PrepMillis,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                prepTimer.setText("CAN PREP IN:\t\t\t"+getDiffAsString(millisUntilFinished));
+                String left=getDiffAsString(millisUntilFinished);
+                String[] parts=left.split("\t:\t");
+                prepTimerBox.update(parts[0],parts[1],parts[2],parts[3]);
+                prepTimer.setText("CAN PREP IN:\t\t\t"+left);
+                int days=Integer.parseInt(left.split("\t:\t")[0]);
+                //@sameertodo: when 1 day, change to "Day"
+                //@sameertodo: when 0, remove the view and show.
+                if(days!=DaysToPrep) {
+                    DaysToPrep=days;
+                    arcView.setText(days+"");
+                }
             }
 
             @Override
@@ -81,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
         DoTimer.start();
         PrepTimer.start();
-
     }
 
     private String getDiffAsString(long diff) {

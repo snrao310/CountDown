@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Activities.MainActivity"
     android:background="@color/colorBackground">
-
-    <com.example.snrao.countdown.Views.CountDownView
-        android:id="@+id/PrepTimerBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <View
         android:id="@+id/shadow"
@@ -47,7 +38,7 @@
 
 
             <com.example.snrao.countdown.Views.ArcView
-                android:id="@+id/archView"
+                android:id="@+id/arcView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2" />
@@ -73,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="hours1"
+                    android:text="hours"
                     android:textColor="@color/colorWhite"/>
             </LinearLayout>
 
@@ -98,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="minutes1"
+                    android:text="minutes"
                     android:textColor="@color/colorWhite"/>
             </LinearLayout>
 
@@ -123,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="seconds1"
+                    android:text="seconds"
                     android:textColor="@color/colorWhite"/>
             </LinearLayout>
 
@@ -138,28 +129,5 @@
         android:background="@drawable/shadow_background_bottom">
     </View>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Timer 1"
-        android:id="@+id/DoTimer"
-        android:layout_below="@+id/layout1"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timer 2"
-        android:id="@+id/PrepTimer"
-        android:textColor="@color/colorWhite"
-        android:layout_below="@+id/DoTimer"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timer 3"
-        android:id="@+id/ElapsedTimer"
-        android:textColor="@color/colorWhite"
-        android:layout_below="@+id/PrepTimer"/>
 </LinearLayout>
