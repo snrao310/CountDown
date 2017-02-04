@@ -17,9 +17,10 @@ import java.util.SimpleTimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String START_DATE="02/24/2016 19:12:00";
-    static final String DO_DATE = "02/24/2017 19:12:00";
-    static final String PREP_DATE = "02/03/2017 19:12:00";
+
+    static final String START_DATE="07/22/2016 00:00:00";
+    static final String DO_DATE = "07/22/2017 00:00:00";
+    static final String PREP_DATE = "07/01/2017 00:00:00";
     static int DaysToPrep=0;
     static int DaysToDo=0;
     static int DaysFromStart=0;
@@ -28,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
     long PrepMillis;
     long TotalTime;
 
+    CountDownView prepTimerBox;
+
     //@sameertodo: delete these once final one is done.
     TextView doTimer;
     TextView prepTimer;
     TextView elapsedTimer;
-    ArcView arcView;
 
-    CountDownView prepTimerBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         doTimer = (TextView) findViewById(R.id.DoTimer);
         prepTimer=(TextView) findViewById(R.id.PrepTimer);
         elapsedTimer=(TextView) findViewById(R.id.ElapsedTimer);
-        arcView = (ArcView) findViewById(R.id.archView);
         prepTimerBox=(CountDownView) findViewById(R.id.PrepTimerBox);
 
 
@@ -68,13 +68,6 @@ public class MainActivity extends AppCompatActivity {
         TotalTime=DoDate.getTime()-start.getTime();
 
 
-        //change this to settings view
-        ArcAngleAnimation animation = new ArcAngleAnimation(arcView, 300);
-        animation.setDuration(5000);
-        arcView.startAnimation(animation);
-        String left=getDiffAsString(PrepMillis);
-        DaysToPrep=Integer.parseInt(left.split("\t:\t")[0]);
-        arcView.setText(DaysToPrep+"");
 
         int progress=(int)((double)(TotalTime-PrepMillis)/(double)TotalTime*360), duration=5000;
         prepTimerBox.setup(progress,duration,DaysToPrep+"");
@@ -109,12 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 prepTimerBox.update(parts[0],parts[1],parts[2],parts[3]);
                 prepTimer.setText("CAN PREP IN:\t\t\t"+left);
                 int days=Integer.parseInt(left.split("\t:\t")[0]);
-                //@sameertodo: when 1 day, change to "Day"
-                //@sameertodo: when 0, remove the view and show.
-                if(days!=DaysToPrep) {
-                    DaysToPrep=days;
-                    arcView.setText(days+"");
-                }
             }
 
             @Override
