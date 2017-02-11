@@ -25,8 +25,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/timerLabel"
             android:textColor="@color/colorWhite"
-            android:text="Time To Prep Date:"
+            android:text="Label"
             android:paddingBottom="10dp"/>
 
         <LinearLayout

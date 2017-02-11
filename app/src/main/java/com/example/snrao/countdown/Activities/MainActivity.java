@@ -22,6 +22,17 @@ public class MainActivity extends AppCompatActivity {
     static final String DO_DATE = "07/22/2017 00:00:00";
     static final String PREP_DATE = "07/01/2017 00:00:00";
 
+//    static final String START_DATE="02/11/2016 10:01:40";
+//    static final String DO_DATE = "02/11/2017 10:01:40";
+//    static final String PREP_DATE = "02/11/2017 10:01:30";
+
+    static final String prepLabel = "Time to Prep: ";
+    static final String doLabel = "Time to Do: ";
+    static final String elapsedLabel = "Time Elapsed: ";
+    static final String prepLabelDone = "CAN PREP NOW";
+    static final String doLabelDone = "CAN DO NOW";
+    static final String elapsedLabelDone = "CONGRATULATIONS!!\n ONE YEAR!!";
+
     long DoMillis;
     long PrepMillis;
     long TotalTime;
@@ -30,21 +41,12 @@ public class MainActivity extends AppCompatActivity {
     CountDownView doTimerBox;
     CountDownView elapsedTimerBox;
 
-    //@sameertodo: delete these once final one is done.
-    TextView doTimer;
-    TextView prepTimer;
-    TextView elapsedTimer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        doTimer = (TextView) findViewById(R.id.DoTimer);
-        prepTimer=(TextView) findViewById(R.id.PrepTimer);
-        elapsedTimer=(TextView) findViewById(R.id.ElapsedTimer);
         prepTimerBox=(CountDownView) findViewById(R.id.PrepTimerBox);
         doTimerBox=(CountDownView) findViewById(R.id.DoTimerBox);
         elapsedTimerBox=(CountDownView) findViewById(R.id.ElapsedTimerBox);
@@ -71,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         int progress=(int)((double)(TotalTime-PrepMillis)/(double)TotalTime*360), duration=2000;
-        prepTimerBox.setup(progress,duration);
+        prepTimerBox.setup(progress,duration,prepLabel);
 
         progress=(int)((double)(TotalTime-DoMillis)/(double)TotalTime*360); duration=2000;
-        doTimerBox.setup(progress,duration);
+        doTimerBox.setup(progress,duration,doLabel);
 
         progress=(int)((double)(TotalTime-DoMillis)/(double)TotalTime*360); duration=2000;
-        elapsedTimerBox.setup(progress,duration);
+        elapsedTimerBox.setup(progress,duration,elapsedLabel);
 
         setUpTimers();
 
@@ -95,18 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 left=getDiffAsString(TotalTime-millisUntilFinished);
                 parts=left.split("\t:\t");
                 elapsedTimerBox.update(parts[0],parts[1],parts[2],parts[3]);
-
-                doTimer.setText("CAN DO IN:\t\t\t\t\t"+getDiffAsString(millisUntilFinished));
-                elapsedTimer.setText("ELAPSED:\t\t\t\t\t\t"+getDiffAsString(TotalTime-millisUntilFinished));
-
             }
 
             @Override
             public void onFinish() {
-                doTimerBox.finish();
-
-                doTimer.setText("CAN DO NOW!!");
-                elapsedTimer.setText("AN YEAR! You've done it!");
+                doTimerBox.finish(false,doLabelDone);
+                elapsedTimerBox.finish(true,elapsedLabelDone);
             }
         };
 
@@ -117,13 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 String left=getDiffAsString(millisUntilFinished);
                 String[] parts=left.split("\t:\t");
                 prepTimerBox.update(parts[0],parts[1],parts[2],parts[3]);
-                prepTimer.setText("CAN PREP IN:\t\t\t"+left);
             }
 
             @Override
             public void onFinish() {
-                prepTimer.setText("CAN PREP NOW!!");
-                prepTimerBox.finish();
+                prepTimerBox.finish(false,prepLabelDone);
             }
         };
 

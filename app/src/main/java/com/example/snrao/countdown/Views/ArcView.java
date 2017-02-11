@@ -81,9 +81,12 @@ public class ArcView extends View {
 
     public void setText(String text){this.text=text;requestLayout();}
 
-    public void finish(){
+    public void finish(boolean countingForward){
         arcAngle=360;
-        text="00";
+        if(countingForward)
+            text="365";
+        else
+            text="00";
         requestLayout();
     }
 }

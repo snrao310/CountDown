@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/colorBackground"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <com.example.snrao.countdown.Views.CountDownView
             android:id="@+id/PrepTimerBox"
@@ -26,32 +27,6 @@
             android:id="@+id/ElapsedTimerBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-
-        <TextView
-            android:id="@+id/DoTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layout1"
-            android:text="Timer 1"
-            android:textColor="@color/colorWhite" />
-
-        <TextView
-            android:id="@+id/PrepTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/DoTimer"
-            android:text="Timer 2"
-            android:textColor="@color/colorWhite" />
-
-
-        <TextView
-            android:id="@+id/ElapsedTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/PrepTimer"
-            android:text="Timer 3"
-            android:textColor="@color/colorWhite" />
     </LinearLayout>
 </ScrollView>
 
