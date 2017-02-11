@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     static final String DO_DATE = "07/22/2017 00:00:00";
     static final String PREP_DATE = "07/01/2017 00:00:00";
 
-//    static final String START_DATE="02/11/2016 10:01:40";
-//    static final String DO_DATE = "02/11/2017 10:01:40";
-//    static final String PREP_DATE = "02/11/2017 10:01:30";
+//    static final String START_DATE="02/11/2016 12:02:50";
+//    static final String DO_DATE = "02/11/2017 12:02:50";
+//    static final String PREP_DATE = "02/11/2017 12:02:40";
 
     static final String prepLabel = "Time to Prep: ";
     static final String doLabel = "Time to Do: ";
