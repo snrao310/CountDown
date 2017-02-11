@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Activities.MainActivity"
-    android:background="@color/colorBackground">
+    tools:context=".Activities.MainActivity">
 
-    <com.example.snrao.countdown.Views.CountDownView
-        android:id="@+id/PrepTimerBox"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorBackground"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <com.example.snrao.countdown.Views.CountDownView
+            android:id="@+id/PrepTimerBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.example.snrao.countdown.Views.CountDownView
+            android:id="@+id/DoTimerBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.example.snrao.countdown.Views.CountDownView
+            android:id="@+id/ElapsedTimerBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Timer 1"
-        android:id="@+id/DoTimer"
-        android:layout_below="@+id/layout1"/>
+        <TextView
+            android:id="@+id/DoTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout1"
+            android:text="Timer 1"
+            android:textColor="@color/colorWhite" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timer 2"
-        android:id="@+id/PrepTimer"
-        android:textColor="@color/colorWhite"
-        android:layout_below="@+id/DoTimer"/>
+        <TextView
+            android:id="@+id/PrepTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/DoTimer"
+            android:text="Timer 2"
+            android:textColor="@color/colorWhite" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timer 3"
-        android:id="@+id/ElapsedTimer"
-        android:textColor="@color/colorWhite"
-        android:layout_below="@+id/PrepTimer"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/ElapsedTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/PrepTimer"
+            android:text="Timer 3"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+</ScrollView>
+

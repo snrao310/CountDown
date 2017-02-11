@@ -8,6 +8,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.snrao.countdown.R;
+
 /**
  * Created by S N Rao on 2/1/2017.
  */
@@ -17,7 +19,7 @@ public class ArcView extends View {
     private final Paint tPaint;
     private final Paint cPaint;
     private float arcAngle;
-    private String text="My Text";
+    private String text="365";
 
     public ArcView(Context context, AttributeSet attrs) {
 
@@ -30,7 +32,7 @@ public class ArcView extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(20);
-        mPaint.setColor(Color.rgb(33,26,100));
+        mPaint.setColor(getResources().getColor(R.color.colorAccentGreen));
 
         tPaint = new Paint();
         tPaint.setStrokeWidth(5);

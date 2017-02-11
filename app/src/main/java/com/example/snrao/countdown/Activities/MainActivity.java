@@ -21,15 +21,14 @@ public class MainActivity extends AppCompatActivity {
     static final String START_DATE="07/22/2016 00:00:00";
     static final String DO_DATE = "07/22/2017 00:00:00";
     static final String PREP_DATE = "07/01/2017 00:00:00";
-    static int DaysToPrep=0;
-    static int DaysToDo=0;
-    static int DaysFromStart=0;
 
     long DoMillis;
     long PrepMillis;
     long TotalTime;
 
     CountDownView prepTimerBox;
+    CountDownView doTimerBox;
+    CountDownView elapsedTimerBox;
 
     //@sameertodo: delete these once final one is done.
     TextView doTimer;
@@ -47,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         prepTimer=(TextView) findViewById(R.id.PrepTimer);
         elapsedTimer=(TextView) findViewById(R.id.ElapsedTimer);
         prepTimerBox=(CountDownView) findViewById(R.id.PrepTimerBox);
+        doTimerBox=(CountDownView) findViewById(R.id.DoTimerBox);
+        elapsedTimerBox=(CountDownView) findViewById(R.id.ElapsedTimerBox);
 
 
         //Gets current date, dodate, prepdate and startdate, and finds time to dodate and prepdate. Also
@@ -69,8 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        int progress=(int)((double)(TotalTime-PrepMillis)/(double)TotalTime*360), duration=5000;
-        prepTimerBox.setup(progress,duration,DaysToPrep+"");
+        int progress=(int)((double)(TotalTime-PrepMillis)/(double)TotalTime*360), duration=2000;
+        prepTimerBox.setup(progress,duration);
+
+        progress=(int)((double)(TotalTime-DoMillis)/(double)TotalTime*360); duration=2000;
+        doTimerBox.setup(progress,duration);
+
+        progress=(int)((double)(TotalTime-DoMillis)/(double)TotalTime*360); duration=2000;
+        elapsedTimerBox.setup(progress,duration);
 
         setUpTimers();
 
@@ -81,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
         CountDownTimer DoTimer = new CountDownTimer(DoMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                String left=getDiffAsString(millisUntilFinished);
+                String[] parts=left.split("\t:\t");
+                doTimerBox.update(parts[0],parts[1],parts[2],parts[3]);
+
+                left=getDiffAsString(TotalTime-millisUntilFinished);
+                parts=left.split("\t:\t");
+                elapsedTimerBox.update(parts[0],parts[1],parts[2],parts[3]);
+
                 doTimer.setText("CAN DO IN:\t\t\t\t\t"+getDiffAsString(millisUntilFinished));
                 elapsedTimer.setText("ELAPSED:\t\t\t\t\t\t"+getDiffAsString(TotalTime-millisUntilFinished));
 
@@ -88,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                doTimerBox.finish();
+
                 doTimer.setText("CAN DO NOW!!");
                 elapsedTimer.setText("AN YEAR! You've done it!");
             }
@@ -101,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 String[] parts=left.split("\t:\t");
                 prepTimerBox.update(parts[0],parts[1],parts[2],parts[3]);
                 prepTimer.setText("CAN PREP IN:\t\t\t"+left);
-                int days=Integer.parseInt(left.split("\t:\t")[0]);
             }
 
             @Override

@@ -58,6 +58,7 @@
                     android:layout_weight="3"
                     android:paddingTop="40dp"
                     android:textSize="20sp"
+                    android:textColor="@color/colorAccentGreen"
                     android:text="145"/>
 
                 <TextView
@@ -83,6 +84,7 @@
                     android:layout_weight="3"
                     android:paddingTop="40dp"
                     android:textSize="20sp"
+                    android:textColor="@color/colorAccentGreen"
                     android:text="145"/>
 
                 <TextView
@@ -108,6 +110,7 @@
                     android:layout_weight="3"
                     android:paddingTop="40dp"
                     android:textSize="20sp"
+                    android:textColor="@color/colorAccentGreen"
                     android:text="145"/>
 
                 <TextView

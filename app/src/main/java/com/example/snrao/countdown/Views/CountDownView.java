@@ -28,11 +28,10 @@ public class CountDownView extends LinearLayout{
         secondsText=(TextView) findViewById(R.id.seconds);
     }
 
-    public void setup(int progress,int duration,String DaysToPrep){
+    public void setup(int progress,int duration){
         ArcAngleAnimation animation = new ArcAngleAnimation(arcView, progress);
         animation.setDuration(duration);
         arcView.startAnimation(animation);
-        arcView.setText(DaysToPrep);
     }
 
     public void update(String days, String hours, String minutes, String seconds){
