@@ -3,6 +3,7 @@ package com.example.snrao.countdown.Activities;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -50,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         prepTimerBox=(CountDownView) findViewById(R.id.PrepTimerBox);
         doTimerBox=(CountDownView) findViewById(R.id.DoTimerBox);
         elapsedTimerBox=(CountDownView) findViewById(R.id.ElapsedTimerBox);
-
 
         //Gets current date, dodate, prepdate and startdate, and finds time to dodate and prepdate. Also
         // finds total time, which is an year
