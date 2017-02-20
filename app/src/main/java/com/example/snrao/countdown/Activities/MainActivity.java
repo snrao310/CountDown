@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.snrao.countdown.Views.ArcAngleAnimation;
 import com.example.snrao.countdown.Views.ArcView;
@@ -15,6 +17,7 @@ import com.example.snrao.countdown.Views.CountDownView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //Gets current date, dodate, prepdate and startdate, and finds time to dodate and prepdate. Also
         // finds total time, which is an year
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-        simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date today = null, start=null, DoDate = null, PrepDate = null;
         try {
             String now = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date());
@@ -140,5 +143,9 @@ public class MainActivity extends AppCompatActivity {
         return text;
     }
 
+
+    public void prepButtonClicked(View v){
+        Toast.makeText(MainActivity.this,"Okay",Toast.LENGTH_LONG).show();
+    }
 
 }
