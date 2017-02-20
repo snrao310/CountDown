@@ -22,8 +22,7 @@
             <com.example.snrao.countdown.Views.CountDownView
                 android:id="@+id/PrepTimerBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="prepButtonClicked"/>
+                android:layout_height="wrap_content" />
 
             <com.example.snrao.countdown.Views.CountDownView
                 android:id="@+id/DoTimerBox"

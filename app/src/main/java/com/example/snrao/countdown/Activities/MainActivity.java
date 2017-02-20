@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //Gets current date, dodate, prepdate and startdate, and finds time to dodate and prepdate. Also
         // finds total time, which is an year
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        simpleDateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"));
         Date today = null, start=null, DoDate = null, PrepDate = null;
         try {
             String now = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date());
