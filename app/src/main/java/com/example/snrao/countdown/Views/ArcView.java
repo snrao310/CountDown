@@ -7,7 +7,9 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.snrao.countdown.Activities.MainActivity;
 import com.example.snrao.countdown.R;
 
 /**
@@ -70,6 +72,10 @@ public class ArcView extends View {
 
     }
 
+    @Override
+    public void setOnClickListener(OnClickListener l) {
+        super.setOnClickListener(l);
+    }
 
     public float getArcAngle() {
         return arcAngle;

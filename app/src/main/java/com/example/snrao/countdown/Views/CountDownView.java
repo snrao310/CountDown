@@ -1,11 +1,15 @@
 package com.example.snrao.countdown.Views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.snrao.countdown.Activities.DetailsActivity;
 import com.example.snrao.countdown.R;
 
 /**
@@ -28,6 +32,14 @@ public class CountDownView extends LinearLayout{
         minutesText=(TextView) findViewById(R.id.minutes);
         secondsText=(TextView) findViewById(R.id.seconds);
         label=(TextView) findViewById(R.id.timerLabel);
+        arcView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"ok",Toast.LENGTH_LONG).show();
+                Intent i=new Intent(getContext(), DetailsActivity.class);
+                getContext().startActivity(i);
+            }
+        });
     }
 
     public void setup(int progress,int duration,String labelText){
