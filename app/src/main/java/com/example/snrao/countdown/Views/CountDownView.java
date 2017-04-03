@@ -32,14 +32,14 @@ public class CountDownView extends LinearLayout{
         minutesText=(TextView) findViewById(R.id.minutes);
         secondsText=(TextView) findViewById(R.id.seconds);
         label=(TextView) findViewById(R.id.timerLabel);
-        arcView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"ok",Toast.LENGTH_LONG).show();
-                Intent i=new Intent(getContext(), DetailsActivity.class);
-                getContext().startActivity(i);
-            }
-        });
+//        arcView.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(),"ok",Toast.LENGTH_LONG).show();
+//                Intent i=new Intent(getContext(), DetailsActivity.class);
+//                getContext().startActivity(i);
+//            }
+//        });
     }
 
     public void setup(int progress,int duration,String labelText){

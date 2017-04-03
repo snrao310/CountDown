@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     static final String START_DATE="07/22/2016 00:00:00";
     static final String DO_DATE = "07/22/2017 00:00:00";
-    static final String PREP_DATE = "07/01/2017 00:00:00";
+    static final String PREP_DATE = "06/22/2017 00:00:00";
 
 //    static final String START_DATE="02/11/2016 12:02:50";
 //    static final String DO_DATE = "02/11/2017 12:02:50";
